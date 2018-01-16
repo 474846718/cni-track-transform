@@ -11,6 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,19 +37,31 @@ public class EcomExpressResponseBodyConverter implements Converter<ResponseBody,
 
     @Override
     public EcomExpressXmlPojo convert(ResponseBody value) throws IOException {
-        final EcomExpressXmlPojo pojo = new EcomExpressXmlPojo();
+        EcomExpressXmlPojo pojo = new EcomExpressXmlPojo();
+        final List<EcomExpressXmlPojo.EcomExpressBean> list = new ArrayList<>();
+        pojo.setList(list);
         try {
             ObjectHolder.saxParser.parse(value.byteStream(), new DefaultHandler() {
-
+                Object currentObject;
+                String currentFieldName;
 
                 @Override
                 public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+                    if ("object".equals(qName)) {
+                        String model = attributes.getValue("model");
+                        if ("awb".equals(model)) {
+                            currentObject = new EcomExpressXmlPojo.EcomExpressBean();
+                        } else if ("scan_stages".equals(model)) {
+                            currentObject = new EcomExpressXmlPojo.EcomExpressBean.ScanBean();
+                        }
+                    } else if ("field".equals(qName)) {
 
+                    }
                 }
 
                 @Override
                 public void endElement(String uri, String localName, String qName) throws SAXException {
-                    super.endElement(uri, localName, qName);
+
                 }
 
                 @Override
