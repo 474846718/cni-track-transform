@@ -1,9 +1,9 @@
 package com.cni.http;
 
 import com.cni.pojo.BluedartXmlShipmentData;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Observable;
 
 /**
  * Bluedart公司原生API
@@ -25,13 +25,9 @@ public interface BluedartService {
      * &lickey=3591556c28df4decdd839d53c8f9b839
      * &verno=1.3
      * &scan=1
-     *
-     * @param handler
-     * @param action
-     * @return
      */
     @GET("/servlet/RoutingServlet")
-    Observable<BluedartXmlShipmentData> trackingPage(
+    Call<BluedartXmlShipmentData> trackingPage(
             @Query("handler") String handler,
             @Query("action") String action,
             @Query("loginid") String loginId,

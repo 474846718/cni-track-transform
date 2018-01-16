@@ -1,4 +1,4 @@
-package com.cni.pojo;
+package com.cni.pojo.external;
 
 /**
  * 请求参数

@@ -1,7 +1,7 @@
 package com.cni.http;
 
 import com.cni.pojo.external.CommonResult;
-import com.cni.pojo.RequestPojo;
+import com.cni.pojo.external.RequestPojo;
 import retrofit2.Call;
 import retrofit2.http.*;
 
