@@ -1,6 +1,6 @@
-package com.cni.http.convert;
+package com.cni.convert;
 
-import com.cni.pojo.NeomanInvalidXmlPojo;
+import com.cni.pojo.company.NeomanInvalidXmlPojo;
 import okhttp3.ResponseBody;
 import okio.BufferedSource;
 import org.xml.sax.Attributes;

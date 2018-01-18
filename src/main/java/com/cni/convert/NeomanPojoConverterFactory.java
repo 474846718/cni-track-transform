@@ -1,4 +1,4 @@
-package com.cni.http.convert;
+package com.cni.convert;
 
 import okhttp3.ResponseBody;
 import retrofit2.Converter;

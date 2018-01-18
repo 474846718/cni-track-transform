@@ -1,4 +1,4 @@
-package com.cni.pojo;
+package com.cni.pojo.company;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.cni.pojo;
+package com.cni.pojo.company;
 
 import java.util.Date;
 import java.util.List;
@@ -18,6 +18,13 @@ public class EcomExpressXmlPojo {
 
     public void setList(List<EcomExpressBean> list) {
         this.list = list;
+    }
+
+    @Override
+    public String toString() {
+        return "EcomExpressXmlPojo{" +
+                "list=" + list +
+                '}';
     }
 
     /**
@@ -431,6 +438,49 @@ public class EcomExpressXmlPojo {
             this.scans = scans;
         }
 
+        @Override
+        public String toString() {
+            return "EcomExpressBean{" +
+                    "awb_number=" + awb_number +
+                    ", orderid='" + orderid + '\'' +
+                    ", actual_weight=" + actual_weight +
+                    ", origin='" + origin + '\'' +
+                    ", destination='" + destination + '\'' +
+                    ", current_location_name='" + current_location_name + '\'' +
+                    ", current_location_code='" + current_location_code + '\'' +
+                    ", customer='" + customer + '\'' +
+                    ", consignee='" + consignee + '\'' +
+                    ", pickupdate='" + pickupdate + '\'' +
+                    ", status='" + status + '\'' +
+                    ", tracking_status='" + tracking_status + '\'' +
+                    ", reason_code='" + reason_code + '\'' +
+                    ", reason_code_description='" + reason_code_description + '\'' +
+                    ", reason_code_number='" + reason_code_number + '\'' +
+                    ", receiver='" + receiver + '\'' +
+                    ", lat='" + lat + '\'' +
+                    ", _long='" + _long + '\'' +
+                    ", expected_date='" + expected_date + '\'' +
+                    ", last_update_date='" + last_update_date + '\'' +
+                    ", last_update_datetime='" + last_update_datetime + '\'' +
+                    ", delivery_date='" + delivery_date + '\'' +
+                    ", ref_awb='" + ref_awb + '\'' +
+                    ", rts_shipment='" + rts_shipment + '\'' +
+                    ", system_delivery_update='" + system_delivery_update + '\'' +
+                    ", rts_system_delivery_status='" + rts_system_delivery_status + '\'' +
+                    ", rts_reason_code_number='" + rts_reason_code_number + '\'' +
+                    ", rts_last_update='" + rts_last_update + '\'' +
+                    ", pincode='" + pincode + '\'' +
+                    ", city='" + city + '\'' +
+                    ", state='" + state + '\'' +
+                    ", delivery_pod_image='" + delivery_pod_image + '\'' +
+                    ", delivery_pod_signature='" + delivery_pod_signature + '\'' +
+                    ", rev_pickup_signature='" + rev_pickup_signature + '\'' +
+                    ", rev_pickup_packed_image='" + rev_pickup_packed_image + '\'' +
+                    ", rev_pickup_open_image='" + rev_pickup_open_image + '\'' +
+                    ", scans=" + scans +
+                    '}';
+        }
+
         public static class ScanBean {
             private Date updated_on;
             private String status;
@@ -521,6 +571,22 @@ public class EcomExpressXmlPojo {
 
             public void setEmployee(String employee) {
                 Employee = employee;
+            }
+
+            @Override
+            public String toString() {
+                return "ScanBean{" +
+                        "updated_on=" + updated_on +
+                        ", status='" + status + '\'' +
+                        ", reason_code='" + reason_code + '\'' +
+                        ", reason_code_number='" + reason_code_number + '\'' +
+                        ", scan_status='" + scan_status + '\'' +
+                        ", location='" + location + '\'' +
+                        ", location_city='" + location_city + '\'' +
+                        ", location_type='" + location_type + '\'' +
+                        ", city_name='" + city_name + '\'' +
+                        ", Employee='" + Employee + '\'' +
+                        '}';
             }
         }
     }

@@ -1,9 +1,10 @@
 package com.cni.http;
 
-import com.cni.pojo.external.CommonResult;
-import com.cni.pojo.external.RequestPojo;
+import com.cni.pojo.external.*;
 import retrofit2.Call;
 import retrofit2.http.*;
+
+import java.util.List;
 
 /**
  * 调用外部查询服务
@@ -28,7 +29,44 @@ public interface ExternalTraceService {
     @POST("/v1.0.0/{company}/trackingPage")
     Call<CommonResult> trackingPage(@Header("Authorization") String authorization,
                                     @Path("company") String company,
-                                    @Body RequestPojo requestParam);
+                                    @Body CommonRequestPojo requestParam);
+
+    /**
+     * 针对bluedart
+     */
+    @POST("/v1.0.0/bluedart/trackingPage")
+    Call<CommonResult<List<BluedartResponsePojo>>> trackBluedart(@Header("Authorization") String authorization,
+                                                                 @Body CommonRequestPojo requestParam);
+
+
+    /**
+     * 针对delhivery
+     */
+    @POST("/v1.0.0/delhivery/trackingPage")
+    Call<CommonResult<DelhiveryResponsePojo>> trackDelhivery(@Header("Authorization") String authorization,
+                                                             @Body CommonRequestPojo requestParam);
+
+    /**
+     * 针对indiapost
+     */
+    @POST("/v1.0.0/indiapost/trackingPage")
+    Call<CommonResult<IndiaPostResponsePojo>> trackIndiapost(@Header("Authorization") String authorization,
+                                                             @Body CommonRequestPojo requestParam);
+
+    /**
+     * 针对ecom
+     */
+    @POST("/v1.0.0/ecom/trackingPage")
+    Call<CommonResult<EcomResponsePojo>> trackEcom(@Header("Authorization") String authorization,
+                                                   @Body CommonRequestPojo requestParam);
+
+    /**
+     * 针对gati
+     */
+    @POST("/v1.0.0/gati/trackingPage")
+    Call<CommonResult<GatiResponsePojo>> trackGati(@Header("Authorization") String authorization,
+                                                   @Body GatiRequestPojo requestParam);
+
 
     /**
      * 用户登录

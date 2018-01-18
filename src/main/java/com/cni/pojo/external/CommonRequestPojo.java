@@ -9,7 +9,7 @@ package com.cni.pojo.external;
  * <p>
  * Author：胡飞飞
  */
-public class RequestPojo {
+public class CommonRequestPojo {
 
     /**
      * awb : 59638108526,59639940754

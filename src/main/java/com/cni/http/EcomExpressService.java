@@ -1,8 +1,8 @@
 package com.cni.http;
 
-import com.cni.pojo.EcomExpressXmlPojo;
-import org.springframework.web.bind.annotation.PostMapping;
+import com.cni.pojo.company.EcomExpressXmlPojo;
 import retrofit2.Call;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -19,7 +19,7 @@ public interface EcomExpressService {
      * username=sino151328&
      * password=sned53emv28dve
      */
-    @PostMapping("/track_me/api/mawbd/")
+    @POST("/track_me/api/mawbd/")
     Call<EcomExpressXmlPojo> trackingPage(@Query("awb") String awb,
                                           @Query("order") String order,
                                           @Query("username") String username,

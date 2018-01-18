@@ -1,4 +1,4 @@
-package com.cni.http.convert;
+package com.cni.convert;
 
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
@@ -14,9 +14,15 @@ import java.lang.reflect.Type;
  */
 public class EcomExpressConverterFactory extends Converter.Factory {
 
-    @Override
-    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
-        return super.responseBodyConverter(type, annotations, retrofit);
+    private EcomExpressConverterFactory() {
     }
 
+    @Override
+    public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
+        return new EcomExpressResponseBodyConverter();
+    }
+
+    public static EcomExpressConverterFactory create() {
+        return new EcomExpressConverterFactory();
+    }
 }

@@ -1,6 +1,6 @@
 package com.cni.http;
 
-import com.cni.pojo.BluedartXmlShipmentData;
+import com.cni.pojo.company.BluedartXmlPojo;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -27,7 +27,7 @@ public interface BluedartService {
      * &scan=1
      */
     @GET("/servlet/RoutingServlet")
-    Call<BluedartXmlShipmentData> trackingPage(
+    Call<BluedartXmlPojo> trackingPage(
             @Query("handler") String handler,
             @Query("action") String action,
             @Query("loginid") String loginId,

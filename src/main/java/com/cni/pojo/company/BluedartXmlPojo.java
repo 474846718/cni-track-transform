@@ -1,4 +1,4 @@
-package com.cni.pojo;
+package com.cni.pojo.company;
 
 
 import javax.xml.bind.annotation.*;
@@ -98,7 +98,7 @@ import java.util.List;
         "shipment"
 })
 @XmlRootElement(name = "ShipmentData")
-public class BluedartXmlShipmentData {
+public class BluedartXmlPojo {
 
     @XmlElement(name = "Shipment")
     protected List<Shipment> shipment;
@@ -132,7 +132,7 @@ public class BluedartXmlShipmentData {
 
     @Override
     public String toString() {
-        return "BluedartXmlShipmentData{" +
+        return "BluedartXmlPojo{" +
                 "shipment=" + shipment +
                 '}';
     }

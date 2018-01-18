@@ -13,7 +13,7 @@ package com.cni.pojo.external;
  * <p>
  * Author: 胡飞飞
  */
-public class CommonResult {
+public class CommonResult<T> {
 
 
     /**
@@ -25,13 +25,13 @@ public class CommonResult {
 
     private String code;
     private String message;
-    private Object info;
+    private T info;
     private boolean success;
 
     public CommonResult() {
     }
 
-    private CommonResult(String code, String message, Object info, boolean success) {
+    private CommonResult(String code, String message, T info, boolean success) {
         this.code = code;
         this.message = message;
         this.info = info;
@@ -78,11 +78,11 @@ public class CommonResult {
         this.message = message;
     }
 
-    public Object getInfo() {
+    public T getInfo() {
         return info;
     }
 
-    public void setInfo(Object info) {
+    public void setInfo(T info) {
         this.info = info;
     }
 
