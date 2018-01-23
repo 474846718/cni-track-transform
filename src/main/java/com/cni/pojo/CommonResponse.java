@@ -1,4 +1,4 @@
-package com.cni.pojo.external;
+package com.cni.pojo;
 
 /**
  * 示例：
@@ -13,7 +13,7 @@ package com.cni.pojo.external;
  * <p>
  * Author: 胡飞飞
  */
-public class CommonResult<T> {
+public class CommonResponse {
 
 
     /**
@@ -25,41 +25,45 @@ public class CommonResult<T> {
 
     private String code;
     private String message;
-    private T info;
+    private Object info;
     private boolean success;
 
-    public CommonResult() {
+    public CommonResponse() {
     }
 
-    private CommonResult(String code, String message, T info, boolean success) {
+    private CommonResponse(String code, String message, Object info, boolean success) {
         this.code = code;
         this.message = message;
         this.info = info;
         this.success = success;
     }
 
-    public static CommonResult build(String code, String message, Object info, boolean success) {
-        return new CommonResult(code, message, info, success);
+    public static CommonResponse build(String code, String message, Object info, boolean success) {
+        return new CommonResponse(code, message, info, success);
     }
 
-    public static CommonResult success() {
-        return new CommonResult("200", "ok", null, true);
+    public static CommonResponse success() {
+        return new CommonResponse("200", "ok", null, true);
     }
 
-    public static CommonResult success(String msg) {
-        return new CommonResult("200", msg, null, true);
+    public static CommonResponse success(String msg) {
+        return new CommonResponse("200", msg, null, true);
     }
 
-    public static CommonResult success(String msg, Object info) {
-        return new CommonResult("200", msg, info, true);
+    public static CommonResponse success(String msg, Object info) {
+        return new CommonResponse("200", msg, info, true);
     }
 
-    public static CommonResult error(String code, String msg) {
-        return new CommonResult(code, msg, null, false);
+    public static CommonResponse error(String code, String msg) {
+        return new CommonResponse(code, msg, null, false);
     }
 
-    public static <T> CommonResult error(String code, String msg, T info) {
-        return new CommonResult(code, msg, info, false);
+    public static CommonResponse error(String code, String msg, Object info) {
+        return new CommonResponse(code, msg, info, false);
+    }
+
+    public static CommonResponse error(String msg, Throwable e) {
+        return new CommonResponse("500", msg, e.getMessage(), false);
     }
 
     public String getCode() {
@@ -78,11 +82,11 @@ public class CommonResult<T> {
         this.message = message;
     }
 
-    public T getInfo() {
+    public Object getInfo() {
         return info;
     }
 
-    public void setInfo(T info) {
+    public void setInfo(Object info) {
         this.info = info;
     }
 

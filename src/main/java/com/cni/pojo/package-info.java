@@ -3,4 +3,4 @@
  * <p>
  * Created by CNI on 2018/1/18.
  */
-package com.cni.pojo.company;
+package com.cni.pojo;

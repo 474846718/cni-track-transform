@@ -1,6 +1,6 @@
 package com.cni.http;
 
-import com.cni.pojo.company.EcomExpressXmlPojo;
+import com.cni.pojo.EcomExpressXmlPojo;
 import retrofit2.Call;
 import retrofit2.http.POST;
 import retrofit2.http.Query;

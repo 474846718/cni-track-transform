@@ -1,4 +1,4 @@
-package com.cni.pojo.company;
+package com.cni.pojo;
 
 
 import javax.xml.bind.annotation.*;

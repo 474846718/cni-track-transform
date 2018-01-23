@@ -1,6 +1,6 @@
 package com.cni.convert;
 
-import com.cni.pojo.company.EcomExpressXmlPojo;
+import com.cni.pojo.EcomExpressXmlPojo;
 import okhttp3.ResponseBody;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.util.StringUtils;

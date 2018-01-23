@@ -1,6 +1,6 @@
 package com.cni.http;
 
-import com.cni.pojo.company.BluedartXmlPojo;
+import com.cni.pojo.BluedartXmlPojo;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

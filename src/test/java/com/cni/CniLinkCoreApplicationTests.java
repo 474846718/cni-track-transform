@@ -1,18 +1,18 @@
 package com.cni;
 
-import com.cni.http.*;
 import com.cni.convert.EcomExpressConverterFactory;
 import com.cni.convert.NeomanPojoConverterFactory;
-import com.cni.pojo.company.BluedartXmlPojo;
-import com.cni.pojo.company.DelhiveryJsonPojo;
-import com.cni.pojo.company.EcomExpressXmlPojo;
-import com.cni.pojo.company.NeomanInvalidXmlPojo;
-import com.cni.pojo.external.CommonResult;
-import com.cni.pojo.external.CommonRequestPojo;
+import com.cni.http.BluedartService;
+import com.cni.http.DelhiveryService;
+import com.cni.http.EcomExpressService;
+import com.cni.http.NeomanService;
+import com.cni.pojo.BluedartXmlPojo;
+import com.cni.pojo.DelhiveryJsonPojo;
+import com.cni.pojo.EcomExpressXmlPojo;
+import com.cni.pojo.NeomanInvalidXmlPojo;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.jaxb.XmlJaxbAnnotationIntrospector;
-import okhttp3.OkHttpClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,63 +23,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CniLinkCoreApplicationTests {
 
-    @Test
-    public void testIndiaPost() throws IOException {
-        testExternalTraceService("indiapost", "EQ949022774IN");
-    }
-
-    @Test
-    public void testBluedart() throws IOException {
-        testExternalTraceService("blurdart",
-                "59642433335," +
-                        "59638108526," +
-                        "42057026524," +
-                        "59638517234," +
-                        "59640605356," +
-                        "59642433336," +
-                        "59648679801," +
-                        "59648657084," +
-                        "59648645044");
-    }
-
-    public void testExternalTraceService(String company, String awb) throws IOException {
-        OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(100, TimeUnit.SECONDS)
-                .readTimeout(100, TimeUnit.SECONDS)
-                .build();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://47.91.212.1:9090")
-                .addConverterFactory(JacksonConverterFactory.create())
-                .client(client)
-                .build();
-
-        ExternalTraceService service = retrofit.create(ExternalTraceService.class);
-        Call<CommonResult> login = service.userLogin("traceuser001", "extTraceHK258147");
-        Response<CommonResult> loginResponse = login.execute();
-        if (loginResponse.isSuccessful()) {
-            CommonResult body = loginResponse.body();
-            boolean success = body.isSuccess();
-            System.out.println(success);
-            System.out.println(body);
-            String token = (String) body.getInfo();
-
-            CommonRequestPojo requestPojo = new CommonRequestPojo();
-            requestPojo.setType("awb");
-            requestPojo.setAwb(awb);
-            Call<CommonResult> trackingPage = service.trackingPage(token, company, requestPojo);
-            Response<CommonResult> result = trackingPage.execute();
-            if (result.isSuccessful()) {
-                CommonResult resultPojo = result.body();
-                System.out.println(resultPojo);
-            }
-        }
-    }
 
     @Test
     public void testBluedartService() throws IOException {
@@ -98,7 +46,6 @@ public class CniLinkCoreApplicationTests {
             System.out.println(body);
         }
     }
-
 
     @Test
     public void testDelhiveryService() throws IOException {
