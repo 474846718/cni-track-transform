@@ -20,7 +20,7 @@ public interface GatiService {
      * @param trackNums 多个单号以空格分割
      * @param nType     100
      */
-    @POST
+    @POST("/api/v1/track/queryByTrackNum")
     Call<GatiJsonPojo> trackingPage(@Query("trackNums") String trackNums,
                                     @Query("ntype") String nType);
 

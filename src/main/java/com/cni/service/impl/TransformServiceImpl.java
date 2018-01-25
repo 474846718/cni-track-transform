@@ -1,6 +1,7 @@
 package com.cni.service.impl;
 
 import com.cni.http.*;
+import com.cni.http.impl.NotFoundException;
 import com.cni.pojo.*;
 import com.cni.service.ITransformService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class TransformServiceImpl implements ITransformService {
     @Autowired
     private GatiService gatiService;
 
+    @Autowired
+    private IndiapostService indiapostService;
+
+
     @Override
     public BluedartXmlPojo transformBluedart(String orderNum) throws IOException {
         Call<BluedartXmlPojo> call = bluedartService.trackingPage("tnt", "custawbquery", "BOM06862", "awb", orderNum, "3591556c28df4decdd839d53c8f9b839", "1.3", "1");
@@ -64,11 +69,16 @@ public class TransformServiceImpl implements ITransformService {
     @Override
     public GatiJsonPojo transformGati(String orderNum) throws IOException {
         // gati原生API要求提供的多个单号要以空格分隔
-        orderNum.replace(',', ' ');
+        orderNum = orderNum.replace(',', ' ');
         Call<GatiJsonPojo> call = gatiService.trackingPage(orderNum, "100");
         Response<GatiJsonPojo> response = call.execute();
         return response.body();
     }
 
-
+    @Override
+    public IndiapostHtmlPojo transformIndiaport(String orderNum) throws IOException, NotFoundException {
+        String token = indiapostService.getToken(orderNum);
+        String html = indiapostService.getHtml(token);
+        return indiapostService.transform(html);
+    }
 }

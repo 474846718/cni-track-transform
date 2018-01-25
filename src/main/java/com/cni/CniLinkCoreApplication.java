@@ -6,17 +6,15 @@ import com.cni.http.*;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.jaxb.XmlJaxbAnnotationIntrospector;
+import okhttp3.OkHttpClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class CniLinkCoreApplication {
@@ -25,18 +23,17 @@ public class CniLinkCoreApplication {
         SpringApplication.run(CniLinkCoreApplication.class, args);
     }
 
-
-    public static class WebMvcConfig extends WebMvcConfigurerAdapter {
-
-        @Override
-        public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-            converters.add(new MappingJackson2HttpMessageConverter());
-        }
-
-    }
-
     @Configuration
     public static class BeanConfig {
+
+        @Bean
+        public OkHttpClient httpClient() {
+            return new OkHttpClient.Builder()
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .retryOnConnectionFailure(true)
+                    .build();
+        }
 
         @Bean
         public BluedartService bluedartService() {
@@ -85,7 +82,5 @@ public class CniLinkCoreApplication {
                     .build()
                     .create(GatiService.class);
         }
-
     }
-
 }

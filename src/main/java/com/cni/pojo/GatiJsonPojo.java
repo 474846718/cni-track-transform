@@ -1,5 +1,7 @@
 package com.cni.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -13,7 +15,7 @@ public class GatiJsonPojo {
     /**
      * code : 0000
      * msg : 成功
-     * list : [{"ResultMsg":"SUCCESS","Data":{"EmsInfo":{"TDate":"","Des":"印度","StateDesc":"送达","State":"3","Sign":"nishanth daniel","From":"","ADate":"2017.11.26 13:34","TrckingNbr":"661086868"},"TrackData":[{"dateTime":"2017-11-26 13:34","place":"Hyderabad","info":"Delivered. Signed for by nishanth daniel","compareDateTime":1511674440000},{"dateTime":"2017-11-26 07:26","place":"Hyderabad Central","info":"Arrived","compareDateTime":1511652360000},{"dateTime":"2017-11-26 06:06","place":"Hyderabad Outbound","info":"Out for next station","compareDateTime":1511647560000},{"dateTime":"2017-11-25 21:26","place":"Hyderabad Outbound","info":"Arrived","compareDateTime":1511616360000},{"dateTime":"2017-11-25 20:31","place":"Hyderabad Tarbund (Ecom)","info":"Out for next station","compareDateTime":1511613060000},{"dateTime":"2017-11-25 16:52","place":"Hyderabad Tarbund (Ecom)","info":"Arrived","compareDateTime":1511599920000},{"dateTime":"2017-11-25 07:29","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511566140000},{"dateTime":"2017-11-25 06:54","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511564040000},{"dateTime":"2017-11-25 05:08","place":"Delhi Atc","info":"Arrived","compareDateTime":1511557680000},{"dateTime":"2017-11-24 20:07","place":"Delhi Gate Way","info":"Out for next station","compareDateTime":1511525220000},{"dateTime":"2017-11-24 14:40","place":"Delhi Gate Way","info":"Arrived","compareDateTime":1511505600000},{"dateTime":"2017-11-22 17:48","place":"International Operation Center","info":"In Transit","compareDateTime":1511344080000},{"dateTime":"2017-11-22 15:28","place":"Shanghai","info":"Out for next station","compareDateTime":1511335680000},{"dateTime":"2017-11-22 14:53","place":"International Operation Center","info":"Check in","compareDateTime":1511333580000}]},"CustomerRef":"9854065","TrackNumber":"661086868","ResultCode":"0000"},{"ResultMsg":"SUCCESS","Data":{"EmsInfo":{"TDate":"","Des":"印度","StateDesc":"送达","State":"3","Sign":"self","From":"","ADate":"2017.11.26 16:35","TrckingNbr":"661086882"},"TrackData":[{"dateTime":"2017-11-26 16:35","place":"Guwahati","info":"Delivered. Signed for by self","compareDateTime":1511685300000},{"dateTime":"2017-11-26 09:18","place":"Guwahati Ecom","info":"Arrived","compareDateTime":1511659080000},{"dateTime":"2017-11-26 09:14","place":"Guwahati Stc","info":"Out for next station","compareDateTime":1511658840000},{"dateTime":"2017-11-26 09:02","place":"Guwahati Stc","info":"Arrived","compareDateTime":1511658120000},{"dateTime":"2017-11-25 18:36","place":"Guwahati","info":"Out for next station","compareDateTime":1511606160000},{"dateTime":"2017-11-25 18:14","place":"Guwahati","info":"Arrived","compareDateTime":1511604840000},{"dateTime":"2017-11-25 07:21","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511565660000},{"dateTime":"2017-11-25 06:58","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511564280000},{"dateTime":"2017-11-25 05:08","place":"Delhi Atc","info":"Arrived","compareDateTime":1511557680000},{"dateTime":"2017-11-24 20:07","place":"Delhi Gate Way","info":"Out for next station","compareDateTime":1511525220000},{"dateTime":"2017-11-24 14:40","place":"Delhi Gate Way","info":"Arrived","compareDateTime":1511505600000},{"dateTime":"2017-11-22 17:48","place":"International Operation Center","info":"In Transit","compareDateTime":1511344080000},{"dateTime":"2017-11-22 15:28","place":"Shanghai","info":"Out for next station","compareDateTime":1511335680000},{"dateTime":"2017-11-22 14:53","place":"International Operation Center","info":"Check in","compareDateTime":1511333580000}]},"CustomerRef":"9851383","TrackNumber":"661086882","ResultCode":"0000"},{"ResultMsg":"SUCCESS","Data":{"EmsInfo":{"TDate":"","Des":"印度","StateDesc":"送达","State":"3","Sign":"JORAL","From":"","ADate":"2017.10.17 17:37","TrckingNbr":"661125807"},"TrackData":[{"dateTime":"2017-10-17 17:37","place":"Baroda","info":"Delivered at destination city. Signed for by JORAL","compareDateTime":1508233020000},{"dateTime":"2017-10-17 11:37","place":"Baroda","info":"Arrived","compareDateTime":1508211420000},{"dateTime":"2017-10-17 11:07","place":"Baroda North","info":"Out for next station","compareDateTime":1508209620000},{"dateTime":"2017-10-17 08:39","place":"Baroda North","info":"Arrived","compareDateTime":1508200740000},{"dateTime":"2017-10-17 05:18","place":"Ahmedabad Stc","info":"Out for next station","compareDateTime":1508188680000},{"dateTime":"2017-10-16 22:02","place":"Ahmedabad Stc","info":"Arrived","compareDateTime":1508162520000},{"dateTime":"2017-10-16 20:36","place":"Ahmedabad Atc","info":"Out for next station","compareDateTime":1508157360000},{"dateTime":"2017-10-16 12:16","place":"Ahmedabad Atc","info":"Arrived","compareDateTime":1508127360000},{"dateTime":"2017-10-16 06:48","place":"Delhi Atc","info":"Out for next station","compareDateTime":1508107680000},{"dateTime":"2017-10-16 06:47","place":"Delhi Atc","info":"Out for next station","compareDateTime":1508107620000},{"dateTime":"2017-10-16 05:37","place":"Delhi Atc","info":"Arrived","compareDateTime":1508103420000},{"dateTime":"2017-10-16 05:36","place":"Delhi Gate Way","info":"Out for next station","compareDateTime":1508103360000},{"dateTime":"2017-10-14 17:11","place":"Delhi Gate Way","info":"Arrived","compareDateTime":1507972260000},{"dateTime":"2017-10-09 09:27","place":"International Operation Center","info":"In Transit","compareDateTime":1507512420000},{"dateTime":"2017-10-09 08:04","place":"Shanghai","info":"Out for next station","compareDateTime":1507507440000},{"dateTime":"2017-10-08 09:30","place":"International Operation Center","info":"Check in","compareDateTime":1507426200000}]},"CustomerRef":"WO5088712-1-2017-10-07T14:34:13.120421+08:00","TrackNumber":"661125807","ResultCode":"0000"}]
+     * list : [{"ResultMsg":"SUCCESS","Data":{"EmsInfo":{"TDate":"","Des":"印度","StateDesc":"送达","State":"3","Sign":"nishanth daniel","From":"","ADate":"2017.11.26 13:34","TrckingNbr":"661086868"},"TrackData":[{"dateTime":"2017-11-26 13:34","place":"Hyderabad","info":"Delivered. Signed for by nishanth daniel","compareDateTime":1511674440000},{"dateTime":"2017-11-26 07:26","place":"Hyderabad Central","info":"Arrived","compareDateTime":1511652360000},{"dateTime":"2017-11-26 06:06","place":"Hyderabad Outbound","info":"Out for next station","compareDateTime":1511647560000},{"dateTime":"2017-11-25 21:26","place":"Hyderabad Outbound","info":"Arrived","compareDateTime":1511616360000},{"dateTime":"2017-11-25 20:31","place":"Hyderabad Tarbund (Ecom)","info":"Out for next station","compareDateTime":1511613060000},{"dateTime":"2017-11-25 16:52","place":"Hyderabad Tarbund (Ecom)","info":"Arrived","compareDateTime":1511599920000},{"dateTime":"2017-11-25 07:29","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511566140000},{"dateTime":"2017-11-25 06:54","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511564040000},{"dateTime":"2017-11-25 05:08","place":"Delhi Atc","info":"Arrived","compareDateTime":1511557680000},{"dateTime":"2017-11-24 20:07","place":"Delhi Gate Way","info":"Out for next station","compareDateTime":1511525220000},{"dateTime":"2017-11-24 14:40","place":"Delhi Gate Way","info":"Arrived","compareDateTime":1511505600000},{"dateTime":"2017-11-22 17:48","place":"International Operation Center","info":"In Transit","compareDateTime":1511344080000},{"dateTime":"2017-11-22 15:28","place":"Shanghai","info":"Out for next station","compareDateTime":1511335680000},{"dateTime":"2017-11-22 14:53","place":"International Operation Center","info":"Check in","compareDateTime":1511333580000}]},"CustomerRef":"9854065","TrackNumber":"661086868","ResultCode":"0000"}]
      */
 
     private String code;
@@ -53,10 +55,15 @@ public class GatiJsonPojo {
          * ResultCode : 0000
          */
 
+        @JsonProperty("ResultMsg")
         private String ResultMsg;
+        @JsonProperty("Data")
         private DataBean Data;
+        @JsonProperty("CustomerRef")
         private String CustomerRef;
+        @JsonProperty("TrackNumber")
         private String TrackNumber;
+        @JsonProperty("ResultCode")
         private String ResultCode;
 
         public String getResultMsg() {
@@ -105,7 +112,9 @@ public class GatiJsonPojo {
              * TrackData : [{"dateTime":"2017-11-26 13:34","place":"Hyderabad","info":"Delivered. Signed for by nishanth daniel","compareDateTime":1511674440000},{"dateTime":"2017-11-26 07:26","place":"Hyderabad Central","info":"Arrived","compareDateTime":1511652360000},{"dateTime":"2017-11-26 06:06","place":"Hyderabad Outbound","info":"Out for next station","compareDateTime":1511647560000},{"dateTime":"2017-11-25 21:26","place":"Hyderabad Outbound","info":"Arrived","compareDateTime":1511616360000},{"dateTime":"2017-11-25 20:31","place":"Hyderabad Tarbund (Ecom)","info":"Out for next station","compareDateTime":1511613060000},{"dateTime":"2017-11-25 16:52","place":"Hyderabad Tarbund (Ecom)","info":"Arrived","compareDateTime":1511599920000},{"dateTime":"2017-11-25 07:29","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511566140000},{"dateTime":"2017-11-25 06:54","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511564040000},{"dateTime":"2017-11-25 05:08","place":"Delhi Atc","info":"Arrived","compareDateTime":1511557680000},{"dateTime":"2017-11-24 20:07","place":"Delhi Gate Way","info":"Out for next station","compareDateTime":1511525220000},{"dateTime":"2017-11-24 14:40","place":"Delhi Gate Way","info":"Arrived","compareDateTime":1511505600000},{"dateTime":"2017-11-22 17:48","place":"International Operation Center","info":"In Transit","compareDateTime":1511344080000},{"dateTime":"2017-11-22 15:28","place":"Shanghai","info":"Out for next station","compareDateTime":1511335680000},{"dateTime":"2017-11-22 14:53","place":"International Operation Center","info":"Check in","compareDateTime":1511333580000}]
              */
 
+            @JsonProperty("EmsInfo")
             private EmsInfoBean EmsInfo;
+            @JsonProperty("TrackData")
             private List<TrackDataBean> TrackData;
 
             public EmsInfoBean getEmsInfo() {
@@ -136,13 +145,21 @@ public class GatiJsonPojo {
                  * TrckingNbr : 661086868
                  */
 
+                @JsonProperty("TDate")
                 private String TDate;
+                @JsonProperty("Des")
                 private String Des;
+                @JsonProperty("StateDesc")
                 private String StateDesc;
+                @JsonProperty("State")
                 private String State;
+                @JsonProperty("Sign")
                 private String Sign;
+                @JsonProperty("From")
                 private String From;
+                @JsonProperty("ADate")
                 private String ADate;
+                @JsonProperty("TrckingNbr")
                 private String TrckingNbr;
 
                 public String getTDate() {

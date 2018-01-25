@@ -1,5 +1,6 @@
 package com.cni.service;
 
+import com.cni.http.impl.NotFoundException;
 import com.cni.pojo.*;
 
 import java.io.IOException;
@@ -20,4 +21,6 @@ public interface ITransformService {
     NeomanInvalidXmlPojo transformNeoman(String orderNum) throws IOException;
 
     GatiJsonPojo transformGati(String orderNum) throws IOException;
+
+    IndiapostHtmlPojo transformIndiaport(String orderNum) throws IOException, NotFoundException;
 }
