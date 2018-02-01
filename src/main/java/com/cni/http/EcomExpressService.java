@@ -1,6 +1,6 @@
 package com.cni.http;
 
-import com.cni.pojo.EcomExpressXmlPojo;
+import com.cni.pojo.EcomXmlPojo;
 import retrofit2.Call;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -20,8 +20,8 @@ public interface EcomExpressService {
      * password=sned53emv28dve
      */
     @POST("/track_me/api/mawbd/")
-    Call<EcomExpressXmlPojo> trackingPage(@Query("awb") String awb,
-                                          @Query("order") String order,
-                                          @Query("username") String username,
-                                          @Query("password") String password);
+    Call<EcomXmlPojo> trackingPage(@Query("awb") String awb,
+                                   @Query("order") String order,
+                                   @Query("username") String username,
+                                   @Query("password") String password);
 }

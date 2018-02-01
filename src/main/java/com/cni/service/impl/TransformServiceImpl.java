@@ -53,9 +53,9 @@ public class TransformServiceImpl implements ITransformService {
     }
 
     @Override
-    public EcomExpressXmlPojo transformEcomExpress(String orderNum) throws IOException {
-        Call<EcomExpressXmlPojo> call = ecomExpressService.trackingPage(orderNum, "", "sino151328", "sned53emv28dve");
-        Response<EcomExpressXmlPojo> response = call.execute();
+    public EcomXmlPojo transformEcomExpress(String orderNum) throws IOException {
+        Call<EcomXmlPojo> call = ecomExpressService.trackingPage(orderNum, "", "sino151328", "sned53emv28dve");
+        Response<EcomXmlPojo> response = call.execute();
         return response.body();
     }
 

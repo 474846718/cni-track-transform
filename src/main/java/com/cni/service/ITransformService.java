@@ -16,7 +16,7 @@ public interface ITransformService {
 
     DelhiveryJsonPojo transformDelhivery(String orderNum) throws IOException;
 
-    EcomExpressXmlPojo transformEcomExpress(String orderNum) throws IOException;
+    EcomXmlPojo transformEcomExpress(String orderNum) throws IOException;
 
     NeomanInvalidXmlPojo transformNeoman(String orderNum) throws IOException;
 

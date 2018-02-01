@@ -55,17 +55,13 @@ public class GatiJsonPojo {
          * ResultCode : 0000
          */
 
-        @JsonProperty("ResultMsg")
         private String ResultMsg;
-        @JsonProperty("Data")
         private DataBean Data;
-        @JsonProperty("CustomerRef")
         private String CustomerRef;
-        @JsonProperty("TrackNumber")
         private String TrackNumber;
-        @JsonProperty("ResultCode")
         private String ResultCode;
 
+        @JsonProperty("ResultMsg")
         public String getResultMsg() {
             return ResultMsg;
         }
@@ -74,6 +70,7 @@ public class GatiJsonPojo {
             this.ResultMsg = ResultMsg;
         }
 
+        @JsonProperty("Data")
         public DataBean getData() {
             return Data;
         }
@@ -82,6 +79,7 @@ public class GatiJsonPojo {
             this.Data = Data;
         }
 
+        @JsonProperty("CustomerRef")
         public String getCustomerRef() {
             return CustomerRef;
         }
@@ -90,6 +88,7 @@ public class GatiJsonPojo {
             this.CustomerRef = CustomerRef;
         }
 
+        @JsonProperty("TrackNumber")
         public String getTrackNumber() {
             return TrackNumber;
         }
@@ -98,6 +97,7 @@ public class GatiJsonPojo {
             this.TrackNumber = TrackNumber;
         }
 
+        @JsonProperty("ResultCode")
         public String getResultCode() {
             return ResultCode;
         }
@@ -112,11 +112,10 @@ public class GatiJsonPojo {
              * TrackData : [{"dateTime":"2017-11-26 13:34","place":"Hyderabad","info":"Delivered. Signed for by nishanth daniel","compareDateTime":1511674440000},{"dateTime":"2017-11-26 07:26","place":"Hyderabad Central","info":"Arrived","compareDateTime":1511652360000},{"dateTime":"2017-11-26 06:06","place":"Hyderabad Outbound","info":"Out for next station","compareDateTime":1511647560000},{"dateTime":"2017-11-25 21:26","place":"Hyderabad Outbound","info":"Arrived","compareDateTime":1511616360000},{"dateTime":"2017-11-25 20:31","place":"Hyderabad Tarbund (Ecom)","info":"Out for next station","compareDateTime":1511613060000},{"dateTime":"2017-11-25 16:52","place":"Hyderabad Tarbund (Ecom)","info":"Arrived","compareDateTime":1511599920000},{"dateTime":"2017-11-25 07:29","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511566140000},{"dateTime":"2017-11-25 06:54","place":"Delhi Atc","info":"Out for next station","compareDateTime":1511564040000},{"dateTime":"2017-11-25 05:08","place":"Delhi Atc","info":"Arrived","compareDateTime":1511557680000},{"dateTime":"2017-11-24 20:07","place":"Delhi Gate Way","info":"Out for next station","compareDateTime":1511525220000},{"dateTime":"2017-11-24 14:40","place":"Delhi Gate Way","info":"Arrived","compareDateTime":1511505600000},{"dateTime":"2017-11-22 17:48","place":"International Operation Center","info":"In Transit","compareDateTime":1511344080000},{"dateTime":"2017-11-22 15:28","place":"Shanghai","info":"Out for next station","compareDateTime":1511335680000},{"dateTime":"2017-11-22 14:53","place":"International Operation Center","info":"Check in","compareDateTime":1511333580000}]
              */
 
-            @JsonProperty("EmsInfo")
             private EmsInfoBean EmsInfo;
-            @JsonProperty("TrackData")
             private List<TrackDataBean> TrackData;
 
+            @JsonProperty("EmsInfo")
             public EmsInfoBean getEmsInfo() {
                 return EmsInfo;
             }
@@ -125,6 +124,7 @@ public class GatiJsonPojo {
                 this.EmsInfo = EmsInfo;
             }
 
+            @JsonProperty("TrackData")
             public List<TrackDataBean> getTrackData() {
                 return TrackData;
             }
@@ -144,24 +144,16 @@ public class GatiJsonPojo {
                  * ADate : 2017.11.26 13:34
                  * TrckingNbr : 661086868
                  */
-
-                @JsonProperty("TDate")
                 private String TDate;
-                @JsonProperty("Des")
                 private String Des;
-                @JsonProperty("StateDesc")
                 private String StateDesc;
-                @JsonProperty("State")
                 private String State;
-                @JsonProperty("Sign")
                 private String Sign;
-                @JsonProperty("From")
                 private String From;
-                @JsonProperty("ADate")
                 private String ADate;
-                @JsonProperty("TrckingNbr")
                 private String TrckingNbr;
 
+                @JsonProperty("TDate")
                 public String getTDate() {
                     return TDate;
                 }
@@ -170,6 +162,7 @@ public class GatiJsonPojo {
                     this.TDate = TDate;
                 }
 
+                @JsonProperty("Des")
                 public String getDes() {
                     return Des;
                 }
@@ -178,6 +171,7 @@ public class GatiJsonPojo {
                     this.Des = Des;
                 }
 
+                @JsonProperty("StateDesc")
                 public String getStateDesc() {
                     return StateDesc;
                 }
@@ -186,6 +180,7 @@ public class GatiJsonPojo {
                     this.StateDesc = StateDesc;
                 }
 
+                @JsonProperty("State")
                 public String getState() {
                     return State;
                 }
@@ -194,6 +189,7 @@ public class GatiJsonPojo {
                     this.State = State;
                 }
 
+                @JsonProperty("Sign")
                 public String getSign() {
                     return Sign;
                 }
@@ -202,6 +198,7 @@ public class GatiJsonPojo {
                     this.Sign = Sign;
                 }
 
+                @JsonProperty("From")
                 public String getFrom() {
                     return From;
                 }
@@ -210,6 +207,7 @@ public class GatiJsonPojo {
                     this.From = From;
                 }
 
+                @JsonProperty("ADate")
                 public String getADate() {
                     return ADate;
                 }
@@ -218,6 +216,7 @@ public class GatiJsonPojo {
                     this.ADate = ADate;
                 }
 
+                @JsonProperty("TrckingNbr")
                 public String getTrckingNbr() {
                     return TrckingNbr;
                 }

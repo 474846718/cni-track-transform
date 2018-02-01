@@ -1,6 +1,6 @@
 package com.cni.convert;
 
-import com.cni.pojo.EcomExpressXmlPojo;
+import com.cni.pojo.EcomXmlPojo;
 import okhttp3.ResponseBody;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.util.StringUtils;
@@ -24,7 +24,7 @@ import java.util.List;
  * <p>
  * Created by CNI on 2018/1/16.
  */
-public class EcomExpressResponseBodyConverter implements Converter<ResponseBody, EcomExpressXmlPojo> {
+public class EcomExpressResponseBodyConverter implements Converter<ResponseBody, EcomXmlPojo> {
 
     private static class ObjectHolder {
 
@@ -74,14 +74,14 @@ public class EcomExpressResponseBodyConverter implements Converter<ResponseBody,
     }
 
     @Override
-    public EcomExpressXmlPojo convert(ResponseBody value) throws IOException {
-        EcomExpressXmlPojo pojo = new EcomExpressXmlPojo();
-        final List<EcomExpressXmlPojo.EcomExpressBean> list = new ArrayList<>();
+    public EcomXmlPojo convert(ResponseBody value) throws IOException {
+        EcomXmlPojo pojo = new EcomXmlPojo();
+        final List<EcomXmlPojo.EcomExpressBean> list = new ArrayList<>();
         pojo.setList(list);
         try {
             ObjectHolder.saxParser.parse(value.byteStream(), new DefaultHandler() {
-                EcomExpressXmlPojo.EcomExpressBean ecomExpressBean;
-                EcomExpressXmlPojo.EcomExpressBean.ScanBean scanBean;
+                EcomXmlPojo.EcomExpressBean ecomExpressBean;
+                EcomXmlPojo.EcomExpressBean.ScanBean scanBean;
                 Object currentObject;
                 String currentTag;
                 String currentFieldName;
@@ -93,16 +93,16 @@ public class EcomExpressResponseBodyConverter implements Converter<ResponseBody,
                     if ("object".equals(qName)) {
                         String model = attributes.getValue("model");
                         if ("awb".equals(model)) {
-                            ecomExpressBean = new EcomExpressXmlPojo.EcomExpressBean();
+                            ecomExpressBean = new EcomXmlPojo.EcomExpressBean();
                             list.add(ecomExpressBean);
                             currentObject = ecomExpressBean;
                         } else if ("scan_stages".equals(model)) {
                             if (ecomExpressBean != null) {
-                                List<EcomExpressXmlPojo.EcomExpressBean.ScanBean> list;
+                                List<EcomXmlPojo.EcomExpressBean.ScanBean> list;
                                 if (null == (list = ecomExpressBean.getScans())) {
                                     list = new ArrayList<>();
                                 }
-                                scanBean = new EcomExpressXmlPojo.EcomExpressBean.ScanBean();
+                                scanBean = new EcomXmlPojo.EcomExpressBean.ScanBean();
                                 list.add(scanBean);
                                 ecomExpressBean.setScans(list);
                             }

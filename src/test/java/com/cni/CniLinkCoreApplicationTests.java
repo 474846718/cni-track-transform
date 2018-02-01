@@ -8,7 +8,7 @@ import com.cni.http.EcomExpressService;
 import com.cni.http.NeomanService;
 import com.cni.pojo.BluedartXmlPojo;
 import com.cni.pojo.DelhiveryJsonPojo;
-import com.cni.pojo.EcomExpressXmlPojo;
+import com.cni.pojo.EcomXmlPojo;
 import com.cni.pojo.NeomanInvalidXmlPojo;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -84,10 +84,10 @@ public class CniLinkCoreApplicationTests {
                 .addConverterFactory(EcomExpressConverterFactory.create())
                 .build();
         EcomExpressService service = retrofit.create(EcomExpressService.class);
-        Call<EcomExpressXmlPojo> trackingPage = service.trackingPage("221550310,223390321", "", "sino151328", "sned53emv28dve");
-        Response<EcomExpressXmlPojo> response = trackingPage.execute();
+        Call<EcomXmlPojo> trackingPage = service.trackingPage("221550310,223390321", "", "sino151328", "sned53emv28dve");
+        Response<EcomXmlPojo> response = trackingPage.execute();
         if (response.isSuccessful()) {
-            EcomExpressXmlPojo pojo = response.body();
+            EcomXmlPojo pojo = response.body();
             System.out.println(pojo);
         }
     }

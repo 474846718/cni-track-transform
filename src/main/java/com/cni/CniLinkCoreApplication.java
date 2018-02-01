@@ -36,48 +36,53 @@ public class CniLinkCoreApplication {
         }
 
         @Bean
-        public BluedartService bluedartService() {
+        public BluedartService bluedartService(OkHttpClient client) {
             XmlMapper xmlMapper = new XmlMapper();
             XmlJaxbAnnotationIntrospector introspector = new XmlJaxbAnnotationIntrospector(TypeFactory.defaultInstance());
             xmlMapper.setAnnotationIntrospector(introspector);
             return new Retrofit.Builder()
                     .baseUrl("http://www.bluedart.com")
+                    .client(client)
                     .addConverterFactory(JacksonConverterFactory.create(xmlMapper))
                     .build()
                     .create(BluedartService.class);
         }
 
         @Bean
-        public DelhiveryService delhiveryService() {
+        public DelhiveryService delhiveryService(OkHttpClient client) {
             return new Retrofit.Builder()
                     .baseUrl("https://g5m2dkib88.execute-api.ap-southeast-1.amazonaws.com")
+                    .client(client)
                     .addConverterFactory(JacksonConverterFactory.create())
                     .build()
                     .create(DelhiveryService.class);
         }
 
         @Bean
-        public EcomExpressService ecomExpressService() {
+        public EcomExpressService ecomExpressService(OkHttpClient client) {
             return new Retrofit.Builder()
                     .baseUrl("http://plapi.ecomexpress.in/track_me/api/mawbd/")
+                    .client(client)
                     .addConverterFactory(EcomExpressConverterFactory.create())
                     .build()
                     .create(EcomExpressService.class);
         }
 
         @Bean
-        public NeomanService neomanService() {
+        public NeomanService neomanService(OkHttpClient client) {
             return new Retrofit.Builder()
                     .baseUrl("http://120.78.89.247")
+                    .client(client)
                     .addConverterFactory(NeomanPojoConverterFactory.create())
                     .build()
                     .create(NeomanService.class);
         }
 
         @Bean
-        public GatiService gatiService() {
+        public GatiService gatiService(OkHttpClient client) {
             return new Retrofit.Builder()
                     .baseUrl("http://www.gaticn.com")
+                    .client(client)
                     .addConverterFactory(JacksonConverterFactory.create())
                     .build()
                     .create(GatiService.class);

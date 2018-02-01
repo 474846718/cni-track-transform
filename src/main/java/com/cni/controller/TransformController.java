@@ -28,6 +28,7 @@ public class TransformController {
     @PostMapping("/login")
     public Object login(HttpServletRequest request, String user, String password) {
         if ("traceuser001".equals(user) && "extTraceHK258147".equals(password)) {
+            @SuppressWarnings("deprecation")
             String token = RandomStringUtils.randomAlphanumeric(32);
             request.getSession().setAttribute(SESSION_KEY_TOKEN, token);
             return CommonResponse.success("登录成功", token);
@@ -56,7 +57,6 @@ public class TransformController {
             return CommonResponse.error("出现异常", e);
         }
     }
-
 
     @RequestMapping(value = "/delhivery", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Object delhivery(
@@ -92,8 +92,8 @@ public class TransformController {
             return CommonResponse.error("401", "token有误");
         }
         try {
-            EcomExpressXmlPojo ecomExpressXmlPojo = transformService.transformEcomExpress(orderNum);
-            return CommonResponse.success("原生API调用成功", ecomExpressXmlPojo);
+            EcomXmlPojo ecomXmlPojo = transformService.transformEcomExpress(orderNum);
+            return CommonResponse.success("原生API调用成功", ecomXmlPojo);
         } catch (Exception e) {
             e.printStackTrace();
             return CommonResponse.error("出现异常", e);

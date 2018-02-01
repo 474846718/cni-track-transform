@@ -61,6 +61,7 @@ public class IndiapostServiceImpl implements IndiapostService {
             int startPos = firstLine.indexOf(URL_TOKEN_START) + URL_TOKEN_START.length();
             int endPos = firstLine.indexOf(URL_TOKEN_END) + URL_TOKEN_END.length();
             String token = firstLine.substring(startPos, endPos - 1);
+            //noinspection deprecation
             return URLDecoder.decode(token);
         }
     }

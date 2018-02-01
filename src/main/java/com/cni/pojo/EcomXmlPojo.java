@@ -8,7 +8,7 @@ import java.util.List;
  * <p>
  * Created by CNI on 2018/1/16.
  */
-public class EcomExpressXmlPojo {
+public class EcomXmlPojo {
 
     List<EcomExpressBean> list;
 
@@ -22,7 +22,7 @@ public class EcomExpressXmlPojo {
 
     @Override
     public String toString() {
-        return "EcomExpressXmlPojo{" +
+        return "EcomXmlPojo{" +
                 "list=" + list +
                 '}';
     }
