@@ -2,14 +2,13 @@ package com.cni.controller;
 
 import com.cni.http.impl.NotFoundException;
 import com.cni.pojo.*;
+import com.cni.service.IAuthorizationService;
 import com.cni.service.ITransformService;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 将原生API转JSON格式
@@ -20,34 +19,24 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/v1.0.0")
 public class TransformController {
 
-    private static final String SESSION_KEY_TOKEN = "_session_token_key_";
-
     @Autowired
     private ITransformService transformService;
 
+    @Autowired
+    private IAuthorizationService authorizationService;
+
     @PostMapping("/login")
-    public Object login(HttpServletRequest request, String user, String password) {
-        if ("traceuser001".equals(user) && "extTraceHK258147".equals(password)) {
-            @SuppressWarnings("deprecation")
-            String token = RandomStringUtils.randomAlphanumeric(32);
-            request.getSession().setAttribute(SESSION_KEY_TOKEN, token);
-            return CommonResponse.success("登录成功", token);
-        } else {
-            return CommonResponse.error("401", "登陆失败");
-        }
+    public Object login(HttpSession session, String user, String password) {
+        return authorizationService.login(session, user, password);
     }
 
     @RequestMapping(value = "/bluedart", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Object bluedart(
             @RequestHeader("Authorization") String token,
             @RequestParam("orderNum") String orderNum,
-            HttpServletRequest request) {
-        String sessionToken = (String) request.getSession().getAttribute(SESSION_KEY_TOKEN);
-        if (StringUtils.isEmpty(sessionToken)) {
-            return CommonResponse.error("401", "请先登录");
-        }
-        if (!sessionToken.equals(token)) {
-            return CommonResponse.error("401", "token有误");
+            HttpSession session) {
+        if (!authorizationService.checkToken(session, token)) {
+            return CommonResponse.error("400", "token有误");
         }
         try {
             BluedartXmlPojo bluedartXmlPojo = transformService.transformBluedart(orderNum);
@@ -62,13 +51,9 @@ public class TransformController {
     public Object delhivery(
             @RequestHeader("Authorization") String token,
             @RequestParam("orderNum") String orderNum,
-            HttpServletRequest request) {
-        String sessionToken = (String) request.getSession().getAttribute(SESSION_KEY_TOKEN);
-        if (StringUtils.isEmpty(sessionToken)) {
-            return CommonResponse.error("401", "请先登录");
-        }
-        if (!sessionToken.equals(token)) {
-            return CommonResponse.error("401", "token有误");
+            HttpSession session) {
+        if (!authorizationService.checkToken(session, token)) {
+            return CommonResponse.error("400", "token有误");
         }
         try {
             DelhiveryJsonPojo delhiveryJsonPojo = transformService.transformDelhivery(orderNum);
@@ -83,13 +68,9 @@ public class TransformController {
     public Object ecomExpress(
             @RequestHeader("Authorization") String token,
             @RequestParam("orderNum") String orderNum,
-            HttpServletRequest request) {
-        String sessionToken = (String) request.getSession().getAttribute(SESSION_KEY_TOKEN);
-        if (StringUtils.isEmpty(sessionToken)) {
-            return CommonResponse.error("401", "请先登录");
-        }
-        if (!sessionToken.equals(token)) {
-            return CommonResponse.error("401", "token有误");
+            HttpSession session) {
+        if (!authorizationService.checkToken(session, token)) {
+            return CommonResponse.error("400", "token有误");
         }
         try {
             EcomXmlPojo ecomXmlPojo = transformService.transformEcomExpress(orderNum);
@@ -104,13 +85,9 @@ public class TransformController {
     public Object neoman(
             @RequestHeader("Authorization") String token,
             @RequestParam("orderNum") String orderNum,
-            HttpServletRequest request) {
-        String sessionToken = (String) request.getSession().getAttribute(SESSION_KEY_TOKEN);
-        if (StringUtils.isEmpty(sessionToken)) {
-            return CommonResponse.error("401", "请先登录");
-        }
-        if (!sessionToken.equals(token)) {
-            return CommonResponse.error("401", "token有误");
+            HttpSession session) {
+        if (!authorizationService.checkToken(session, token)) {
+            return CommonResponse.error("400", "token有误");
         }
         try {
             NeomanInvalidXmlPojo neomanInvalidXmlPojo = transformService.transformNeoman(orderNum);
@@ -125,13 +102,9 @@ public class TransformController {
     public Object gati(
             @RequestHeader("Authorization") String token,
             @RequestParam("orderNum") String orderNum,
-            HttpServletRequest request) {
-        String sessionToken = (String) request.getSession().getAttribute(SESSION_KEY_TOKEN);
-        if (StringUtils.isEmpty(sessionToken)) {
-            return CommonResponse.error("401", "请先登录");
-        }
-        if (!sessionToken.equals(token)) {
-            return CommonResponse.error("401", "token有误");
+            HttpSession session) {
+        if (!authorizationService.checkToken(session, token)) {
+            return CommonResponse.error("400", "token有误");
         }
         try {
             GatiJsonPojo gatiJsonPojo = transformService.transformGati(orderNum);
@@ -146,13 +119,9 @@ public class TransformController {
     public Object indiapost(
             @RequestHeader("Authorization") String token,
             @RequestParam("orderNum") String orderNum,
-            HttpServletRequest request) {
-        String sessionToken = (String) request.getSession().getAttribute(SESSION_KEY_TOKEN);
-        if (StringUtils.isEmpty(sessionToken)) {
-            return CommonResponse.error("401", "请先登录");
-        }
-        if (!sessionToken.equals(token)) {
-            return CommonResponse.error("401", "token有误");
+            HttpSession session) {
+        if (!authorizationService.checkToken(session, token)) {
+            return CommonResponse.error("400", "token有误");
         }
         try {
             IndiapostHtmlPojo indiapostHtmlPojo = transformService.transformIndiaport(orderNum);
