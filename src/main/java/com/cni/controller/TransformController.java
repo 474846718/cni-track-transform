@@ -5,8 +5,10 @@ import com.cni.pojo.*;
 import com.cni.service.IAuthorizationService;
 import com.cni.service.ITransformService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jms.JmsProperties;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import retrofit2.http.GET;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,13 +33,8 @@ public class TransformController {
     }
 
     @RequestMapping(value = "/bluedart", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Object bluedart(
-            @RequestHeader("Authorization") String token,
-            @RequestParam("orderNum") String orderNum,
-            HttpSession session) {
-        if (!authorizationService.checkToken(session, token)) {
-            return CommonResponse.error("400", "token有误");
-        }
+    @GetMapping("/bluedart")
+    public Object bluedart(@RequestParam("orderNum") String orderNum) {
         try {
             BluedartXmlPojo bluedartXmlPojo = transformService.transformBluedart(orderNum);
             return CommonResponse.success("原生API调用成功", bluedartXmlPojo);
@@ -48,13 +45,7 @@ public class TransformController {
     }
 
     @RequestMapping(value = "/delhivery", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Object delhivery(
-            @RequestHeader("Authorization") String token,
-            @RequestParam("orderNum") String orderNum,
-            HttpSession session) {
-        if (!authorizationService.checkToken(session, token)) {
-            return CommonResponse.error("400", "token有误");
-        }
+    public Object delhivery(@RequestParam("orderNum") String orderNum) {
         try {
             DelhiveryJsonPojo delhiveryJsonPojo = transformService.transformDelhivery(orderNum);
             return CommonResponse.success("原生API调用成功", delhiveryJsonPojo);
@@ -65,13 +56,7 @@ public class TransformController {
     }
 
     @RequestMapping(value = "/ecom", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Object ecomExpress(
-            @RequestHeader("Authorization") String token,
-            @RequestParam("orderNum") String orderNum,
-            HttpSession session) {
-        if (!authorizationService.checkToken(session, token)) {
-            return CommonResponse.error("400", "token有误");
-        }
+    public Object ecomExpress(@RequestParam("orderNum") String orderNum) {
         try {
             EcomXmlPojo ecomXmlPojo = transformService.transformEcomExpress(orderNum);
             return CommonResponse.success("原生API调用成功", ecomXmlPojo);
@@ -82,13 +67,7 @@ public class TransformController {
     }
 
     @RequestMapping(value = "/neoman", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Object neoman(
-            @RequestHeader("Authorization") String token,
-            @RequestParam("orderNum") String orderNum,
-            HttpSession session) {
-        if (!authorizationService.checkToken(session, token)) {
-            return CommonResponse.error("400", "token有误");
-        }
+    public Object neoman(@RequestParam("orderNum") String orderNum) {
         try {
             NeomanInvalidXmlPojo neomanInvalidXmlPojo = transformService.transformNeoman(orderNum);
             return CommonResponse.success("原生API调用成功", neomanInvalidXmlPojo);
@@ -99,13 +78,7 @@ public class TransformController {
     }
 
     @RequestMapping(value = "/gati", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Object gati(
-            @RequestHeader("Authorization") String token,
-            @RequestParam("orderNum") String orderNum,
-            HttpSession session) {
-        if (!authorizationService.checkToken(session, token)) {
-            return CommonResponse.error("400", "token有误");
-        }
+    public Object gati(@RequestParam("orderNum") String orderNum) {
         try {
             GatiJsonPojo gatiJsonPojo = transformService.transformGati(orderNum);
             return CommonResponse.success("原生API调用成功", gatiJsonPojo);
@@ -116,13 +89,7 @@ public class TransformController {
     }
 
     @RequestMapping(value = "/indiapost", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Object indiapost(
-            @RequestHeader("Authorization") String token,
-            @RequestParam("orderNum") String orderNum,
-            HttpSession session) {
-        if (!authorizationService.checkToken(session, token)) {
-            return CommonResponse.error("400", "token有误");
-        }
+    public Object indiapost(@RequestParam("orderNum") String orderNum) {
         try {
             IndiapostHtmlPojo indiapostHtmlPojo = transformService.transformIndiaport(orderNum);
             indiapostHtmlPojo.setAwb(orderNum);

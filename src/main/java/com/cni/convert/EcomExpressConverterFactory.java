@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
  * <p>
  * Created by CNI on 2018/1/16.
  */
+
 public class EcomExpressConverterFactory extends Converter.Factory {
 
     private EcomExpressConverterFactory() {

@@ -4,6 +4,9 @@ import com.cni.http.*;
 import com.cni.http.impl.NotFoundException;
 import com.cni.pojo.*;
 import com.cni.service.ITransformService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -18,6 +21,8 @@ import java.io.IOException;
  */
 @Service
 public class TransformServiceImpl implements ITransformService {
+
+    private Log log = LogFactory.getLog(TransformServiceImpl.class);
 
     @Autowired
     private BluedartService bluedartService;
