@@ -21,11 +21,15 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/v1.0.0")
 public class TransformController {
 
-    @Autowired
-    private ITransformService transformService;
+    private final ITransformService transformService;
+
+    private final IAuthorizationService authorizationService;
 
     @Autowired
-    private IAuthorizationService authorizationService;
+    public TransformController(ITransformService transformService, IAuthorizationService authorizationService) {
+        this.transformService = transformService;
+        this.authorizationService = authorizationService;
+    }
 
     @PostMapping("/login")
     public Object login(HttpSession session, String user, String password) {
@@ -33,7 +37,7 @@ public class TransformController {
     }
 
     @RequestMapping(value = "/bluedart", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @GetMapping("/bluedart")
+//    @GetMapping("/bluedart")
     public Object bluedart(@RequestParam("orderNum") String orderNum) {
         try {
             BluedartXmlPojo bluedartXmlPojo = transformService.transformBluedart(orderNum);

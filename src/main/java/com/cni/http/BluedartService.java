@@ -12,7 +12,6 @@ import retrofit2.http.Query;
  * <p>
  * Created by CNI on 2018/1/15.
  */
-// http://www.bluedart.com
 public interface BluedartService {
 
     /**

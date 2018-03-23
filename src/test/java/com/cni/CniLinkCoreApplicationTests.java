@@ -16,6 +16,10 @@ import com.fasterxml.jackson.dataformat.xml.jaxb.XmlJaxbAnnotationIntrospector;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
+import org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.test.context.junit4.SpringRunner;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -27,7 +31,6 @@ import java.io.IOException;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CniLinkCoreApplicationTests {
-
 
     @Test
     public void testBluedartService() throws IOException {

@@ -282,7 +282,7 @@ public class BluedartXmlPojo {
         @XmlElement(name = "ConsigneePincode")
         protected int consigneePincode;
         @XmlElement(name = "ConsigneeTelNo")
-        protected Long consigneeTelNo;
+        protected String consigneeTelNo;
         @XmlElement(name = "Weight")
         protected float weight;
         @XmlElement(name = "Status", required = true)
@@ -299,6 +299,12 @@ public class BluedartXmlPojo {
         protected Long newWaybillNo;
         @XmlElement(name = "ReceivedBy")
         protected String receivedBy;
+        @XmlElement(name = "Relation")
+        protected String relation;
+        @XmlElement(name = "IDType")
+        protected String idType;
+        @XmlElement(name = "IDNo")
+        protected String idNo;
         @XmlElement(name = "Instructions")
         protected String instructions;
         @XmlElement(name = "Scans", required = true)
@@ -307,6 +313,30 @@ public class BluedartXmlPojo {
         protected Long waybillNo;
         @XmlAttribute(name = "RefNo")
         protected String refNo;
+
+        public String getRelation() {
+            return relation;
+        }
+
+        public void setRelation(String relation) {
+            this.relation = relation;
+        }
+
+        public String getIdType() {
+            return idType;
+        }
+
+        public void setIdType(String idType) {
+            this.idType = idType;
+        }
+
+        public String getIdNo() {
+            return idNo;
+        }
+
+        public void setIdNo(String idNo) {
+            this.idNo = idNo;
+        }
 
         /**
          * 获取prodcode属性的值。
@@ -656,7 +686,7 @@ public class BluedartXmlPojo {
          * @return possible object is
          * {@link Long }
          */
-        public Long getConsigneeTelNo() {
+        public String getConsigneeTelNo() {
             return consigneeTelNo;
         }
 
@@ -666,7 +696,7 @@ public class BluedartXmlPojo {
          * @param value allowed object is
          *              {@link Long }
          */
-        public void setConsigneeTelNo(Long value) {
+        public void setConsigneeTelNo(String value) {
             this.consigneeTelNo = value;
         }
 

@@ -14,10 +14,12 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * 将请求的数据转换成EcomExpressXmlPojo
@@ -69,7 +71,7 @@ public class EcomExpressResponseBodyConverter implements Converter<ResponseBody,
                     .toFormatter();
         }*/
 
-        static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM, yyyy, HH:mm");
+        static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM, yyyy, HH:mm", Locale.ENGLISH);
 
     }
 
@@ -126,13 +128,11 @@ public class EcomExpressResponseBodyConverter implements Converter<ResponseBody,
                         String strValue = new String(ch, start, length).trim();
                         Object value = strValue;
                         if ("DateTimeField".equals(fieldType)) {
-                            // LocalDateTime dateTime = LocalDateTime.parse(strValue, ObjectHolder.dateTimeFormatter);
-//                            try {
-//                                value = ObjectHolder.simpleDateFormat.parse(strValue);
-//                            } catch (ParseException e) {
-//                                e.printStackTrace();
-//                            }
-                            value = new Date();
+                            try {
+                                value = ObjectHolder.simpleDateFormat.parse(strValue);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
                         }
                         try {
                             BeanUtils.setProperty(currentObject, currentFieldName, value);

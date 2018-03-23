@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.jaxb.XmlJaxbAnnotationIntrospector;
 import okhttp3.OkHttpClient;
+import org.springframework.aop.framework.AopProxyFactory;
+import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +21,6 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class CniLinkCoreApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(CniLinkCoreApplication.class, args);
     }
