@@ -81,67 +81,69 @@ public class EcomExpressResponseBodyConverter implements Converter<ResponseBody,
         final List<EcomXmlPojo.EcomExpressBean> list = new ArrayList<>();
         pojo.setList(list);
         try {
-            ObjectHolder.saxParser.parse(value.byteStream(), new DefaultHandler() {
-                EcomXmlPojo.EcomExpressBean ecomExpressBean;
-                EcomXmlPojo.EcomExpressBean.ScanBean scanBean;
-                Object currentObject;
-                String currentTag;
-                String currentFieldName;
-                String fieldType;
+            synchronized (this) {
+                ObjectHolder.saxParser.parse(value.byteStream(), new DefaultHandler() {
+                    EcomXmlPojo.EcomExpressBean ecomExpressBean;
+                    EcomXmlPojo.EcomExpressBean.ScanBean scanBean;
+                    Object currentObject;
+                    String currentTag;
+                    String currentFieldName;
+                    String fieldType;
 
-                @Override
-                public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-                    currentTag = qName;
-                    if ("object".equals(qName)) {
-                        String model = attributes.getValue("model");
-                        if ("awb".equals(model)) {
-                            ecomExpressBean = new EcomXmlPojo.EcomExpressBean();
-                            list.add(ecomExpressBean);
-                            currentObject = ecomExpressBean;
-                        } else if ("scan_stages".equals(model)) {
-                            if (ecomExpressBean != null) {
-                                List<EcomXmlPojo.EcomExpressBean.ScanBean> list;
-                                if (null == (list = ecomExpressBean.getScans())) {
-                                    list = new ArrayList<>();
+                    @Override
+                    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+                        currentTag = qName;
+                        if ("object".equals(qName)) {
+                            String model = attributes.getValue("model");
+                            if ("awb".equals(model)) {
+                                ecomExpressBean = new EcomXmlPojo.EcomExpressBean();
+                                list.add(ecomExpressBean);
+                                currentObject = ecomExpressBean;
+                            } else if ("scan_stages".equals(model)) {
+                                if (ecomExpressBean != null) {
+                                    List<EcomXmlPojo.EcomExpressBean.ScanBean> list;
+                                    if (null == (list = ecomExpressBean.getScans())) {
+                                        list = new ArrayList<>();
+                                    }
+                                    scanBean = new EcomXmlPojo.EcomExpressBean.ScanBean();
+                                    list.add(scanBean);
+                                    ecomExpressBean.setScans(list);
                                 }
-                                scanBean = new EcomXmlPojo.EcomExpressBean.ScanBean();
-                                list.add(scanBean);
-                                ecomExpressBean.setScans(list);
+                                currentObject = scanBean;
                             }
-                            currentObject = scanBean;
+                        } else if ("field".equals(qName)) {
+                            currentFieldName = attributes.getValue("name");
+                            fieldType = attributes.getValue("type");
                         }
-                    } else if ("field".equals(qName)) {
-                        currentFieldName = attributes.getValue("name");
-                        fieldType = attributes.getValue("type");
                     }
-                }
 
-                @Override
-                public void endElement(String uri, String localName, String qName) throws SAXException {
-                    currentTag = null;
-                }
+                    @Override
+                    public void endElement(String uri, String localName, String qName) throws SAXException {
+                        currentTag = null;
+                    }
 
-                @Override
-                public void characters(char[] ch, int start, int length) throws SAXException {
-                    if ("field".equals(currentTag) && currentObject != null &&
-                            !StringUtils.isEmpty(currentFieldName) && !StringUtils.isEmpty(fieldType)) {
-                        String strValue = new String(ch, start, length).trim();
-                        Object value = strValue;
-                        if ("DateTimeField".equals(fieldType)) {
+                    @Override
+                    public void characters(char[] ch, int start, int length) throws SAXException {
+                        if ("field".equals(currentTag) && currentObject != null &&
+                                !StringUtils.isEmpty(currentFieldName) && !StringUtils.isEmpty(fieldType)) {
+                            String strValue = new String(ch, start, length).trim();
+                            Object value = strValue;
+                            if ("DateTimeField".equals(fieldType)) {
+                                try {
+                                    value = ObjectHolder.simpleDateFormat.parse(strValue);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                             try {
-                                value = ObjectHolder.simpleDateFormat.parse(strValue);
-                            } catch (ParseException e) {
+                                BeanUtils.setProperty(currentObject, currentFieldName, value);
+                            } catch (IllegalAccessException | InvocationTargetException e) {
                                 e.printStackTrace();
                             }
                         }
-                        try {
-                            BeanUtils.setProperty(currentObject, currentFieldName, value);
-                        } catch (IllegalAccessException | InvocationTargetException e) {
-                            e.printStackTrace();
-                        }
                     }
-                }
-            });
+                });
+            }
         } catch (SAXException e) {
             e.printStackTrace();
         }

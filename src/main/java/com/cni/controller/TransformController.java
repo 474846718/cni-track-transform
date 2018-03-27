@@ -37,7 +37,6 @@ public class TransformController {
     }
 
     @RequestMapping(value = "/bluedart", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//    @GetMapping("/bluedart")
     public Object bluedart(@RequestParam("orderNum") String orderNum) {
         try {
             BluedartXmlPojo bluedartXmlPojo = transformService.transformBluedart(orderNum);

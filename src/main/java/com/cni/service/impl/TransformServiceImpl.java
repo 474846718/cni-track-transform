@@ -1,5 +1,6 @@
 package com.cni.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.cni.http.*;
 import com.cni.http.impl.NotFoundException;
 import com.cni.pojo.*;
@@ -22,7 +23,7 @@ import java.io.IOException;
 @Service
 public class TransformServiceImpl implements ITransformService {
 
-    private Log log = LogFactory.getLog(TransformServiceImpl.class);
+    private static final Log log = LogFactory.getLog(TransformServiceImpl.class);
 
     @Autowired
     private BluedartService bluedartService;
@@ -61,6 +62,7 @@ public class TransformServiceImpl implements ITransformService {
     public EcomXmlPojo transformEcomExpress(String orderNum) throws IOException {
         Call<EcomXmlPojo> call = ecomExpressService.trackingPage(orderNum, "", "sino151328", "sned53emv28dve");
         Response<EcomXmlPojo> response = call.execute();
+        log.warn(JSON.toJSONString(response.body()));
         return response.body();
     }
 
