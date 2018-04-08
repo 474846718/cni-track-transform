@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cni</groupId>
-    <artifactId>cni-link-transform</artifactId>
+    <artifactId>cni-track-transform</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>cni-link-transform</name>
-    <description>cnilink核心抓单业务</description>
+    <name>cni-track-transform</name>
+    <description>运单json格式转换业务</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -6,6 +6,8 @@ import com.cni.http.*;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.jaxb.XmlJaxbAnnotationIntrospector;
+import okhttp3.ConnectionPool;
+import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
 import org.springframework.aop.framework.AopProxyFactory;
 import org.springframework.aop.framework.ProxyFactory;
@@ -30,9 +32,14 @@ public class CniLinkCoreApplication {
 
         @Bean
         public OkHttpClient httpClient() {
+            Dispatcher dispatcher = new Dispatcher();
+            dispatcher.setMaxRequestsPerHost(1000);  //设置最大并发请求数
+            dispatcher.setMaxRequests(3000);
             return new OkHttpClient.Builder()
                     .readTimeout(30, TimeUnit.SECONDS)
                     .connectTimeout(30, TimeUnit.SECONDS)
+                    .dispatcher(dispatcher)
+                    .connectionPool(new ConnectionPool())
                     .retryOnConnectionFailure(true)
                     .build();
         }
